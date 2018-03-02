@@ -1,0 +1,32 @@
+<html ng-app="TestApp">
+	<head>
+		<title>The MEAN stack</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js">
+		</script>
+		<style>
+			table, th, td{
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body ng-controller="MainController as vm">
+		<script>
+			var clientTodo = <%- JSON.stringify(serverTodo) %>;
+		</script>
+		<table style="width: 50%">
+			<tr>
+				<th>user</th>
+				<th>todo</th>
+				<th>isDone</th>
+				<th>attachMent</th>
+			</tr>
+			<tr ng-repeat="todo in vm.todo" >
+				<td>{{ todo.user }}</td>
+				<td>{{ todo.todo }}</td>
+				<td>{{ todo.isDone }}</td>
+				<td>{{ todo.attachMent }}</td>
+			</tr>
+		</table>
+		<script src = "/assets/js/app.js"></script>
+	</body>
+</html>

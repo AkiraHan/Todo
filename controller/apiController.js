@@ -6,12 +6,25 @@ module.exports = function(app){
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended:false }));
 
+    app.get('/Todolist', function(req, res) {
+    
+        Todos.find({}, function(err, results){
+            if(err) throw err;
+            var serverTodos = [];
+            for(i = 0; i < results.length; i++){
+                serverTodos.push(results[i].toObject());
+            }
+            res.render('index',{ serverTodo: serverTodos });
+        });
+        
+    });
+    
     app.get('/api/todos/:uname', function(req,res){
         Todos.find({ user: req.params.uname }, function(err, results){
             if(err) throw err;
 
             res.send(results);
-        })
+        });
     });
 
     app.get('/api/todos/:id', function(req,res){
